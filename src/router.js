@@ -1,5 +1,5 @@
 
-//定义router
+//定义router   路由也可以看做一个个组件
 
 import Vue from 'vue'
 import Router from 'vue-router'

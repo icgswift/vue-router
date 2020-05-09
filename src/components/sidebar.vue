@@ -1,19 +1,12 @@
 <template>
-  <div>
-    sidebar
-    <ul>
-      <li>aaa</li>
-      <li>bbb</li>
-      <li>ccc</li>
-    </ul>
-  </div>
+  <div>sidebar</div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 li {
   background-color: red;
 }
