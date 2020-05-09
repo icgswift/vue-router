@@ -11,10 +11,13 @@ import Center from '@/views/center'
 import Nowplaying from '@/views/film/nowplaying'
 import Commingsoon from '@/views/film/commingsoon'
 
+import Details from '@/views/film/details'
+
 
 Vue.use(Router)
 
 export default new Router({
+    mode: 'history',  //vue-router 默认hash模式  使用history模式有返回404风险  https://router.vuejs.org/zh/guide/essentials/history-mode.html
     routes: [
         {
             path: '/film',
@@ -36,14 +39,23 @@ export default new Router({
                 }
             ]
         },
+
+        {
+            path: '/details/:id',   //动态路由  ：(占位符)
+            name: 'details',    //命名路由
+            component: Details
+        },
+
         {
             path: '/cinema',
             component: Cinema
         },
+
         {
             path: '/center',
             component: Center
         },
+
         // 初始定向至 /film
         {
             path: '*',
