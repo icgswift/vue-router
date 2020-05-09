@@ -1,19 +1,16 @@
 <template>
   <div>
-    <navbar></navbar>
-    <sidebar></sidebar>
+    <tabbar></tabbar>
 
     <!-- 路由容器    切换不同DOM时 路由容器展示不同路由页面 -->
     <router-view></router-view>
-
-    <tabbar></tabbar>
   </div>
 </template>
 
 <script>
 // 引入import要在script标签中
-import Navbar from "./components/navbar.vue";
-import Sidebar from "./components/sidebar.vue";
+// import Navbar from "./components/navbar.vue";
+// import Sidebar from "./components/sidebar.vue";
 import Tabbar from "@/components/tabbar";
 
 export default {
@@ -23,8 +20,8 @@ export default {
 
   // 局部注册
   components: {
-    navbar: Navbar,
-    sidebar: Sidebar,
+    // navbar: Navbar,
+    // sidebar: Sidebar,
     tabbar: Tabbar
   }
 };
