@@ -12,11 +12,17 @@ import Nowplaying from '@/views/film/nowplaying'
 import Commingsoon from '@/views/film/commingsoon'
 
 import Details from '@/views/film/details'
+import Login from '@/views/login'
 
+/* const token = {
+    isLogin() {
+        return false
+    }
+} */
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
     mode: 'history',  //vue-router 默认hash模式  使用history模式有返回404风险  https://router.vuejs.org/zh/guide/essentials/history-mode.html
     routes: [
         {
@@ -53,13 +59,43 @@ export default new Router({
 
         {
             path: '/center',
-            component: Center
+            component: Center,
+            /* 
+                        //路由独享的守卫 
+                        beforeEnter: (from, to, next) => {
+                            if (token.isLogin()) {
+                                next()
+                            } else {
+                                next('/login')
+                            }
+                        } */
         },
 
         // 初始定向至 /film
         {
             path: '*',
             redirect: '/film'
+        },
+        {
+            path: '/login',
+            component: Login
         }
     ]
 })
+
+export default router
+/*
+//全局路由守卫
+router.beforeEach((to, from, next) => {
+    console.log(to, from, next)
+    if (to.path === '/center') {
+        if (token.isLogin()) {
+            next()
+        } else {
+            alert('过不去了')
+            next('/login')
+        }
+    } else {
+        next()
+    }
+}) */
