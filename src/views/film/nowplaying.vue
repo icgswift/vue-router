@@ -2,16 +2,18 @@
   <div>
     nowplaying
     <ul>
-      <li v-for="data in list" :key="data" @click="handleClick(data)">{{data}}</li>
+      <li v-for="(data,index) in list" :key="index" @click="handleClick(data)">{{data.name}}</li>
     </ul>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      list: ["111", "222", "333"]
+      list: []
     };
   },
   methods: {
@@ -27,6 +29,23 @@ export default {
         params: { id: id }
       });
     }
+  },
+  mounted() {
+    // 通过添加请求头获取数据，这是网站设置的请求障碍
+    axios({
+      url:
+        "https://m.maizuo.com/gateway?cityId=110100&pageNum=1&pageSize=10&type=1&k=7584431",
+      method: "get",
+      headers: {
+        "X-Client-Info":
+          '{"a":"3000","ch":"1002","v":"5.0.4","e":"15889854793526168150996","bc":"110100"}',
+        "X-Host": "mall.film-ticket.film.list"
+      }
+    }).then(res => {
+      // console.log(res.data);
+      this.list = res.data.data.films;
+      // console.log(this.list);
+    });
   }
 };
 </script>

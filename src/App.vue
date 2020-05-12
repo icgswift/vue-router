@@ -28,11 +28,22 @@ export default {
 </script>
 
 // scoped   指定css作用域，局限在当前文件
-<style lang='scss' scoped>
-ul {
-  list-style: none;
-  li {
-    background-color: aqua;
-  }
+<style lang='scss'>
+* {
+  margin: 0;
+  padding: 0;
 }
+html {
+  height: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+/* 组件样式设置在组件内部
+tabbar {
+  position: absolute;
+  bottom: 0;
+} */
 </style>

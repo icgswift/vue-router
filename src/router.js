@@ -60,15 +60,15 @@ const router = new Router({
         {
             path: '/center',
             component: Center,
-            /* 
-                        //路由独享的守卫 
-                        beforeEnter: (from, to, next) => {
-                            if (token.isLogin()) {
-                                next()
-                            } else {
-                                next('/login')
-                            }
-                        } */
+
+            /*   //路由独享的守卫 
+              beforeEnter: (from, to, next) => {
+                  if (token.isLogin()) {
+                      next()
+                  } else {
+                      next('/login')
+                  }
+              } */
         },
 
         // 初始定向至 /film
