@@ -10,8 +10,8 @@ import Center from '@/views/center'
 
 import Nowplaying from '@/views/film/nowplaying'
 import Commingsoon from '@/views/film/commingsoon'
-
 import Details from '@/views/film/details'
+
 import Login from '@/views/login'
 
 /* const token = {
@@ -31,17 +31,17 @@ const router = new Router({
             // 配置子路由(film下面)
             children: [
                 {
-                    path: '/film/nowplaying',
+                    path: 'nowplaying',
                     component: Nowplaying
                 },
                 {
-                    path: '/film/commingsoon',
+                    path: 'commingsoon',
                     component: Commingsoon
                 },
                 // 子路由初始定向至nowplaying
                 {
                     path: '',
-                    redirect: '/film/nowplaying'
+                    redirect: 'nowplaying'
                 }
             ]
         },
@@ -60,15 +60,14 @@ const router = new Router({
         {
             path: '/center',
             component: Center,
-
-            /*   //路由独享的守卫 
-              beforeEnter: (from, to, next) => {
-                  if (token.isLogin()) {
-                      next()
-                  } else {
-                      next('/login')
-                  }
-              } */
+            //登陆页面center高亮显示 登陆页面放在center里面？问题不登录进不了center
+            children:
+                [
+                    {
+                        path: 'login',
+                        component: Login
+                    }
+                ]
         },
 
         // 初始定向至 /film
@@ -76,26 +75,8 @@ const router = new Router({
             path: '*',
             redirect: '/film'
         },
-        {
-            path: '/login',
-            component: Login
-        }
+
     ]
 })
 
 export default router
-/*
-//全局路由守卫
-router.beforeEach((to, from, next) => {
-    console.log(to, from, next)
-    if (to.path === '/center') {
-        if (token.isLogin()) {
-            next()
-        } else {
-            alert('过不去了')
-            next('/login')
-        }
-    } else {
-        next()
-    }
-}) */
