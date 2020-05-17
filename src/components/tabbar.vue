@@ -26,6 +26,19 @@
 
 //这里用nav包裹和用div包裹差异巨大，可见H5新标签不只是名称上的变化，而是有实际用处的实现        ************错误，应为没有将css样式局限在本组建中，导致后面的组件收到影响 使用nav标签如不设置scoped同样如此********
 
+// 为了使nav标签有更好的显示效果，需禁止系统横向滚动条（出现横向滚动条使固定定位跳动）
+/* 1、查看是否在head里面加入
+        等比例缩放   没有作用
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         禁止缩放   
+       <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+2、查看width:100%的元素是否有内外边距，使宽度超过100%
+
+3、添加以下CSS代码
+    html，body{
+         overflow-x: hidden;      
+         } */
+
 nav {
   position: fixed;
   bottom: 0;
@@ -38,6 +51,7 @@ nav {
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-top: 5px;
   }
 }
 </style>

@@ -7,4 +7,4 @@ Vue.config.productionTip = false
 new Vue({
   router,   //应用vue-router
   render: h => h(App),
-}).$mount('#app')
+}).$mount('#app')   //vm.$mount(el)    等同于{el:'#app'}  参见生命周期

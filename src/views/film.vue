@@ -8,14 +8,13 @@
 
     <div :class="is?'isfixed':null" id="nav">
       <ul>
-        <!--动态绑定class  -->
         <router-link to="/film/nowplaying" tag="li" activeClass="myactive">正在热映</router-link>
         <router-link to="/film/commingsoon" tag="li" activeClass="myactive">即将上映</router-link>
       </ul>
       <div class="test"></div>
     </div>
     <router-view></router-view>
-    <!-- 用于测试吸顶灯效果 -->
+
     <div style="height:1000px"></div>
   </div>
 </template>
@@ -26,7 +25,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      list: ["11", "222", "333"], //在使用轮播时，初始不为空可能有一定问题，原因swiper初始化过早的问题，涉及异步请求完成后初始化swiper
+      list: ["11", "222", "333"],
       is: false
     };
   },
@@ -47,26 +46,16 @@ export default {
       this.list = res.data.data;
     });
 
-    //为窗口Window绑定事件监听    不要加括号立即调用   window.onscroll=function(){}
     window.onscroll = this.test;
-    /* = function() {
-      // const doc = document.documentElement;
-      //console.log(window.pageYOffset);
-      // console.log(this);    window
-      if (window.pageYOffset === this.$refs.test.offsetHeight) {
-        this.is = true;
-      }
-    }; */
   },
-  // 单页应用，绑定的全局监听 后续路由(组件)会持续作用，删除之
-  // 组件的生命周期
+
   beforeDestroy() {
     window.onscroll = null;
   },
   methods: {
     test() {
       console.log(window.pageYOffset);
-      console.log(this.$refs.test.$el.offsetHeight); // .$el拿到节点 和之前HTML页面上拿到节点不同 这里$refs.NAME拿到的是component组件
+      console.log(this.$refs.test.$el.offsetHeight);
 
       if (window.pageYOffset >= this.$refs.test.$el.offsetHeight) {
         this.is = true;
