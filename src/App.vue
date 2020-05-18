@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- <tabbar v-if="$store.state.msg"></tabbar> -->
+    <!-- this.$store.state.msg简写 -->
+
     <tabbar v-if="msg"></tabbar>
 
     <router-view></router-view>
@@ -8,30 +11,30 @@
 
 <script>
 import Tabbar from "@/components/tabbar";
-
-// 引入事件总线
-import bus from "@/bus.js";
+import { mapState } from "vuex";
 
 export default {
-  data() {
-    return {
-      msg: true
-    };
-  },
-
   components: {
     tabbar: Tabbar
   },
+  /* computed: {
+    msg() {
+      return this.$store.state.msg;
+    }
+  } */
 
-  /* 祖先组件和子组件生命周期有严格的顺序，因此事件总线的发布与订阅有时机问题 */
-  mounted() {
-    console.log("父组件挂载完毕");
-  },
-  beforeMount() {
-    console.log("父组件开始挂载");
-    bus.$on("msg", data => {
-      this.msg = data;
-    });
+  //mapState函数返回一个对象  DOM读取的就是这个对象的方法 这个方法有一个返回值
+  /*   computed: mapState({
+    msg: state => state.msg
+  }) */
+
+  // 计算属性的名称与 state 的子节点名称相同时
+  // computed: mapState(["msg"])
+
+  //将它与局部计算属性混合使用
+  computed: {
+    // 使用对象展开运算符将此对象混入到外部对象中
+    ...mapState(["msg"])
   }
 };
 </script>

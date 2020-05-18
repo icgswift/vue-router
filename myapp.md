@@ -43,4 +43,14 @@ vue项目  卖座电影
                                                         子组件开始挂载
                                   mounted              子组件挂载完毕
                                                         父组件挂载完毕 
-                                                                                             
+    9.vuex   
+          几大作用   1.追踪状态变化
+                    2.便于调试，实现事件穿梭                                                                                     
+                    3.数据快照 用state保存后端数据，切换页面无需重复向后台请求数据 
+             创建store      注意大小写
+             注入store      从根组件注入即可    子组件无需引入store
+             应用store
+                        读取state      $store.state.NAME
+                        修改state    
+                                 mutations触发                               this.$store.commit('mutationNAME',data)
+                                 actions触发mutations(异步操作，对应作用3)     this.$store.dispatch('actionNAME')  

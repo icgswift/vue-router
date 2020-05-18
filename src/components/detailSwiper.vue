@@ -13,7 +13,7 @@ import "swiper/css/swiper.css";
 export default {
   props: ["preview", "myClass"],
   mounted() {
-    console.log(this.preview);
+    // console.log(this.preview);
     new Swiper(`.${this.myClass}`, {
       slidesPerView: this.preview
     });

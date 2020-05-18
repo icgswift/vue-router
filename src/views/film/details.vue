@@ -31,12 +31,8 @@
 </template>
 <script>
 import axios from "axios";
-// import swiper from "swiper";
 import "swiper/css/swiper.css";
 import swiper from "../../components/detailSwiper";
-
-// 引入事件总线
-import bus from "@/bus.js";
 
 export default {
   data() {
@@ -45,7 +41,7 @@ export default {
     };
   },
   mounted() {
-    console.log("子组件挂载完毕");
+    // console.log("子组件挂载完毕");
     axios({
       url: `https://m.maizuo.com/gateway?filmId=${this.$route.params.id}&k=4345852`,
       headers: {
@@ -54,7 +50,7 @@ export default {
         "X-Host": "mall.film-ticket.film.info"
       }
     }).then(res => {
-      console.log(res.data.data.film);
+      // console.log(res.data.data.film);
       this.filmInfo = res.data.data.film;
     });
   },
@@ -62,11 +58,17 @@ export default {
     swiper
   },
   beforeMount() {
-    console.log("子组件开始挂载");
-    bus.$emit("msg", false);
+    // this.$store.state.msg = false;
+    this.$store.commit("test", false);
+    /*  不要直接修改state的值
+        $store.commit提交mutation更改state的值   参数一：'test' mutation事件名  参数二：传递的data
+           1.追踪状态变化
+           2.便于调试，实现事件穿梭 
+    */
   },
   beforeDestroy() {
-    bus.$emit("msg", true);
+    // this.$store.state.msg = true;
+    this.$store.commit("test", true);
   }
 };
 </script>
