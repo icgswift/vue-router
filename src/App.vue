@@ -23,7 +23,7 @@ export default {
     }
   } */
 
-  //mapState函数返回一个对象  DOM读取的就是这个对象的方法 这个方法有一个返回值
+  //mapState函数返回一个对象  DOM读取的就是这个对象的方法 这个方法有一个返回值    作用：当一个组件需要获取多个状态的时候使用mapState函数减少我们的工作量，降低代码耦合性
   /*   computed: mapState({
     msg: state => state.msg
   }) */

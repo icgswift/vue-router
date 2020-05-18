@@ -44,13 +44,18 @@ vue项目  卖座电影
                                   mounted              子组件挂载完毕
                                                         父组件挂载完毕 
     9.vuex   
-          几大作用   1.追踪状态变化
-                    2.便于调试，实现事件穿梭                                                                                     
-                    3.数据快照 用state保存后端数据，切换页面无需重复向后台请求数据 
+           几大作用   1.追踪状态变化
+                     2.便于调试，实现事件穿梭                                                                                     
+                     3.数据快照 用state保存后端数据，切换页面无需重复向后台请求数据 
              创建store      注意大小写
              注入store      从根组件注入即可    子组件无需引入store
              应用store
                         读取state      $store.state.NAME
+                        过滤state      应用store的'计算属性'getters  用于处理一定复杂逻辑 过滤的数据再传递给组件，提高性能
                         修改state    
                                  mutations触发                               this.$store.commit('mutationNAME',data)
                                  actions触发mutations(异步操作，对应作用3)     this.$store.dispatch('actionNAME')  
+                                 
+                     组件化开发时 应避免直接读取store的state       应用计算属性，mapState函数  组件需要获取多个状态的时使用mapState函数减少我们的工作量，降低代码耦合性
+                                        ，调用mutations/actions  commit/dispatch
+                

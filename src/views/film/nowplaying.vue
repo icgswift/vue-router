@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     handleClick(id) {
-      console.log(id, this.$router);
+      // console.log(id, this.$router);
 
       //编程式导航  对应声明式导航
       //   this.$router.push(`/details/${id}`);
@@ -49,7 +49,7 @@ export default {
     }).then(res => {
       // console.log(res.data);
       this.list = res.data.data.films;
-      console.log(this.list);
+      // console.log(this.list);
     });
   }
 };

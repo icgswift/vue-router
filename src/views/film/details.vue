@@ -29,10 +29,14 @@
     </section>
   </div>
 </template>
+
+
 <script>
 import axios from "axios";
 import "swiper/css/swiper.css";
 import swiper from "../../components/detailSwiper";
+
+import { show_tabbar_mutation, hide_tabbar_mutation } from "@/type";
 
 export default {
   data() {
@@ -58,20 +62,15 @@ export default {
     swiper
   },
   beforeMount() {
-    // this.$store.state.msg = false;
-    this.$store.commit("test", false);
-    /*  不要直接修改state的值
-        $store.commit提交mutation更改state的值   参数一：'test' mutation事件名  参数二：传递的data
-           1.追踪状态变化
-           2.便于调试，实现事件穿梭 
-    */
+    this.$store.commit(hide_tabbar_mutation);
   },
   beforeDestroy() {
-    // this.$store.state.msg = true;
-    this.$store.commit("test", true);
+    this.$store.commit(show_tabbar_mutation);
   }
 };
 </script>
+
+
 <style lang="scss" scoped>
 .target-img {
   width: 100%;

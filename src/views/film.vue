@@ -42,7 +42,7 @@ export default {
         "X-Host": "mall.cfg.common-banner"
       }
     }).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       this.list = res.data.data;
     });
 
@@ -54,8 +54,8 @@ export default {
   },
   methods: {
     test() {
-      console.log(window.pageYOffset);
-      console.log(this.$refs.test.$el.offsetHeight);
+      // console.log(window.pageYOffset);
+      // console.log(this.$refs.test.$el.offsetHeight);
 
       if (window.pageYOffset >= this.$refs.test.$el.offsetHeight) {
         this.is = true;
