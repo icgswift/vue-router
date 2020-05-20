@@ -58,4 +58,13 @@ vue项目  卖座电影
                                  
                      组件化开发时 应避免直接读取store的state       应用计算属性，mapState函数  组件需要获取多个状态的时使用mapState函数减少我们的工作量，降低代码耦合性
                                         ，调用mutations/actions  commit/dispatch
-                
+
+    10.vue组件库            
+                    桌面端      elementUI  
+                          全局引入    组件/css 
+                          并注册
+                          按需引入    借助babel-plugin-component 并配置.babelrc  
+                    移动端      mintUI
+                           触屏设备手势库     Hammer.js   --> vue-touch（对Hammer.js的封装）
+
+     11.vue服务端渲染       ssr    nuxt.js                 
