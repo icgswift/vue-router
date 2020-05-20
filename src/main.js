@@ -3,21 +3,14 @@ import App from './App.vue'
 import router from './router'  //引入vue-router
 import store from '@/store.js'
 
+//全局引入
+/* import mint from "mint-ui";
+import "mint-ui/lib/style.css";
+Vue.use(mint); */
 
-// elementUI全局引入与应用
-/* import ElementUI from 'element-ui'
-//引入CSS
-import 'element-ui/lib/theme-chalk/index.css';
-//全局注册
-Vue.use(ElementUI) */
-
-// elementUI按需引入   借助babel-plugin-component 并配置.babelrc  
-import { Button } from 'element-ui'
-// 注册  两种方式
-// Vue.use(button)
-Vue.component('el-button', Button)
-
-
+//按需引入   CSScomponents 需注册
+import { Button } from 'mint-ui'
+Vue.component('mt-button', Button)
 
 new Vue({
   router,   //应用vue-router

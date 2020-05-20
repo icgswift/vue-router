@@ -61,10 +61,15 @@ vue项目  卖座电影
 
     10.vue组件库            
                     桌面端      elementUI  
-                          全局引入    组件/css 
-                          并注册
+                          全局引入    组件/css  并注册
                           按需引入    借助babel-plugin-component 并配置.babelrc  
-                    移动端      mintUI
+                    移动端      mintUI   
+                          全局引入    组件/css  并注册    JScomponents在子组件中使用需单独再引入
+                            子组件中引入和全局相同       JScomponents需单独引入
+                          按需引入   借助babel-plugin-component 并配置.babelrc
+
+                总结为：JScomponents 取用时总是要单独引入  没有引入CSS文件 配置.babelrc 按需引入         
+
                            触屏设备手势库     Hammer.js   --> vue-touch（对Hammer.js的封装）
 
      11.vue服务端渲染       ssr    nuxt.js                 

@@ -8,12 +8,8 @@
 
     <div :class="is?'isfixed':null" id="nav">
       <ul>
-        <router-link to="/film/nowplaying" tag="li" activeClass="myactive">
-          <el-button type="info">正在热映</el-button>
-        </router-link>
-        <router-link to="/film/commingsoon" tag="li" activeClass="myactive">
-          <el-button type="success">即将上映</el-button>
-        </router-link>
+        <router-link to="/film/nowplaying" tag="li" activeClass="myactive">正在热映</router-link>
+        <router-link to="/film/commingsoon" tag="li" activeClass="myactive">即将上映</router-link>
       </ul>
       <div class="test"></div>
     </div>

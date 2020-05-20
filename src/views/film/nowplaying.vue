@@ -1,5 +1,6 @@
 <template>
   <div>
+    <mt-button type="primary">成功</mt-button>
     <ul>
       <li v-for="(data,index) in list" :key="index" @click="handleClick(data.filmId)">
         <img :src="data.poster" />
@@ -7,13 +8,23 @@
         <p>观众评分{{data.grade}}</p>
       </li>
     </ul>
-    <!-- 添加一个空的div用于占据nav导航栏高度的空间，防止内容被其覆盖 -->
-    <div class="empty"></div>
   </div>
 </template>
 
 <script>
+// import Vue from "vue";
 import axios from "axios";
+
+//全局引入 JScomponents单独再引入一次
+/* import {Toast } from "mint-ui";
+ */
+
+// 局部引入     JScomponents需单独引入
+/* import mint, { Toast } from "mint-ui";
+import "mint-ui/lib/style.css";
+Vue.use(mint); */
+
+import { Toast } from "mint-ui";
 
 export default {
   data() {
@@ -23,10 +34,10 @@ export default {
   },
   methods: {
     handleClick(id) {
-      // console.log(id, this.$router);
-
-      //编程式导航  对应声明式导航
-      //   this.$router.push(`/details/${id}`);
+      Toast({
+        message: "操作成功",
+        iconClass: "icon iconfont icon-success"
+      });
 
       //命名路由方式
       this.$router.push({
