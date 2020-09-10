@@ -72,16 +72,17 @@ export default {
 
 
 <style lang="scss" scoped>
+/* 处理后端请求的图片尺寸  设置一维(宽或高)的数据，另一维自适应 百分比参照其父元素*/
+section {
+  text-align: center;
+}
 .target-img {
   width: 100%;
 }
 main img {
   width: 123px;
-  height: 163px;
-  margin: 10px;
 }
 footer img {
-  width: 200px;
-  height: 200px;
+  width: 120px;
 }
 </style>

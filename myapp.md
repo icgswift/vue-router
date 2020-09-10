@@ -10,7 +10,7 @@ vue项目  卖座电影
                                                                           携带参数      动态路由   （注册路由时应用占位符）  `/details/${id}`
                                                                                        命名路由
                                                                           参数获取     （在到的组件中） this.$route.params.id
-                                                     this.$route, this.$router区别   $router,全称VueRouter（路由器：包含所有路由的容器） 
+                                                     this.$route, this.$router区别    $router,全称VueRouter（路由器：包含所有路由的容器） 
                                                                                       $route(路由：描述当前路径的对象) 
 
     2.swiper   
@@ -68,7 +68,7 @@ vue项目  卖座电影
                             子组件中引入和全局相同       JScomponents需单独引入
                           按需引入   借助babel-plugin-component 并配置.babelrc
 
-                总结为：JScomponents 取用时总是要单独引入  没有引入CSS文件 配置.babelrc 按需引入         
+                总结为：JScomponents 取用时总是要单独引入  没有引入CSS文件 配置.babelrc 按需引入 （局部引入适用）        
 
                            触屏设备手势库     Hammer.js   --> vue-touch（对Hammer.js的封装）
 

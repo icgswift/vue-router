@@ -1,28 +1,30 @@
 <template>
-  <!--问题：details中同样是异步请求数据，为什么这里不加v-if可行，details中不行？
-  因为空的数组也是可遍历的，大不了没有值， 但是details中遍历的是filmInfo的属性  读取null（初始化时）的属性会报错
-  -->
-
   <div>
-    <!-- better-scroll的结构   容器 -> 内容区 -->
-    <section class="wraper" :style="{height:gaodu,}">
-      <ul class="content">
-        <li v-for="cinema in cinemas" :key="cinema.cinemaId">
-          <h2>{{cinema.name}}</h2>
-          <p>{{cinema.address}}</p>
-        </li>
-      </ul>
+    <section
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="loading"
+      infinite-scroll-distance="10"
+      infinite-scroll-immediate-check="false"
+    >
+      <li v-for="cinema in cinemas" :key="cinema.cinemaId">
+        <h3>{{cinema.name}}</h3>
+        <p>{{cinema.address}}</p>
+      </li>
     </section>
   </div>
 </template> 
 <script>
+import Vue from "vue";
 import axios from "axios";
-import BScroll from "better-scroll";
+
+import { InfiniteScroll } from "mint-ui";
+Vue.use(InfiniteScroll);
+
 export default {
   data() {
     return {
       cinemas: [],
-      gaodu: null
+      loading: false,
     };
   },
   mounted() {
@@ -31,37 +33,38 @@ export default {
       headers: {
         "X-Client-Info":
           '{"a":"3000","ch":"1002","v":"5.0.4","e":"15889854793526168150996","bc":"440300"}',
-        "X-Host": "mall.film-ticket.cinema.list"
-      }
-    }).then(res => {
-      console.log(res.data);
+        "X-Host": "mall.film-ticket.cinema.list",
+      },
+    }).then((res) => {
       this.cinemas = res.data.data.cinemas;
     });
-
-    // 为better-scroll动态设置容器大小
-    this.gaodu = window.screen.height - 50 + "px";
-    // console.log(this.gaodu);
-    new BScroll(".wraper", {
-      // scrollY: true,默认
-
-      // 开启滚动条，默认为false
-      scrollbar: {
-        fade: true,
-        interactive: false // 1.8.0 新增
-      }
-    });
-  }
+  },
+  methods: {
+    loadMore() {
+      console.log("到底了");
+      this.loading = true;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
-section li {
-  background-color: aqua;
+li {
+  width: 100%;
   margin: 10px auto;
-}
-.wraper {
-  overflow: hidden;
-
-  // 滚动条不超出.wraper的边界
-  position: relative;
+  padding-left: 2vw;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ededed;
+  h3{
+    color: #191a1b;
+    font-size: 15px;
+  }
+  p {
+    color: #797d82;
+    font-size: 12px;
+    width: 70vw;
+    white-space: nowrap; //不换行
+    overflow: hidden;
+    text-overflow: ellipsis; //超出以...结尾
+  }
 }
 </style>   

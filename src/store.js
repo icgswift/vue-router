@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-import { show_tabbar_mutation, hide_tabbar_mutation } from '@/type'
+import {
+    show_tabbar_mutation,
+    hide_tabbar_mutation
+} from '@/type'
 
 Vue.use(Vuex)
 // .Store s大写  store,state在store对象中应用需先传递进去
@@ -16,7 +19,7 @@ export default new Vuex.Store({
     getters: {
         commingListGetter(state) {
             return state.commingList.filter((value, index) =>
-                index < 1
+                index < 8
             )
         }
     },
@@ -27,8 +30,8 @@ export default new Vuex.Store({
         [hide_tabbar_mutation](state) {
             state.msg = false
         },
-        test1(state, data) {
-            state.commingList = data
+        getCommingList(state, value) {
+            state.commingList = value
         },
     },
     actions: {
@@ -40,18 +43,19 @@ export default new Vuex.Store({
                     'X-Host': 'mall.film-ticket.film.list'
                 }
             }).then(res => {
-                store.commit('test1', res.data.data.films)
+                store.commit('getCommingList', res.data.data.films)
             })
         }
     }
 })
 
+
 // [ ]  的作用：变量属性名   将一个不是变量的XXX (比如属性名）变成变量 
-var name = 'sb'
+/* var name = 'sb'
 var obj = {
     [name]: 'cj'
 }
-console.log(obj)    // 'sb'--->sb
+ console.log(obj)    sb:"cj" */
 
 // 上面actions中  等价于
 /* var show_tabbar = 'show'
