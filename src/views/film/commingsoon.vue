@@ -2,7 +2,7 @@
 <template>
   <div id="cswrap">
     <li v-for="data in $store.getters.commingListGetter" :key="data.filmId" id="filmCommingOne">
-      <img :src="data.poster" @click="handleClick(data.filmId)" />
+      <img :src="data.poster"/>
       <section>
         <p>
           {{data.name}}
@@ -10,32 +10,45 @@
             style="background-color:#d2d6dc; border-radius: 5%;"
           >{{data.filmType.name}}</span>
         </p>
-        <p>
-          观众评分
-          <span style="color:orange;">{{data.grade}}</span>
-        </p>
         <p id="actors">
           主演：
           <span v-for="(item,index) in data.actors" :key="index">{{item.name}}&nbsp;</span>
         </p>
       </section>
-      <button>购票</button>
+      <button  @click="handleClick(data.filmId)" >查看</button>
     </li>
   </div>
 </template>
 
 <script>
+import { Toast } from "mint-ui";
+
 export default {
   mounted() {
     if (this.$store.state.commingList.length === 0) {
       // 子组件dispatch，触发actions
+      // 使用方式：dispatch(action事件回调函数)
       this.$store.dispatch("sendAJAX");
     } else {
       console.log("已取得数据");
     }
   },
+  methods:{
+     handleClick(id) {
+      Toast({
+        message: "操作成功",
+        iconClass: "icon iconfont icon-success",
+      });
+
+      this.$router.push({
+        name: "details",//命名路由
+        params: { id },
+      });
+    }
+  }
 };
 </script>
+
 <style lang="scss" scoped>
 #filmCommingOne {
   padding: 1vh 4vw 1vh 2vw;
@@ -49,8 +62,10 @@ export default {
   }
 
   button {
-    color: red;
-    border: 1px orange solid;
+    color: #ff5f16;
+    border: 1px #ff5f16 solid;
+    background-color: white;
+    border-radius: 4px;
     line-height: 1.5rem;
     width: 4.5rem;
   }

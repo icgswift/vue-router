@@ -15,11 +15,19 @@ export default {
   mounted() {
     // console.log(this.preview);
     new Swiper(`.${this.myClass}`, {
-      slidesPerView: this.preview
+      slidesPerView: this.preview,
     });
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.swiper-wrapper{
+  display: flex;
+  align-items:center;
+}
+
 </style>
+
+
+

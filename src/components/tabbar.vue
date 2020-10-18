@@ -21,14 +21,14 @@
 <style lang="scss" scoped>
 //设置activeClass选中样式
 .myactive {
-  color: orange;
+  color: #ff5f16;
   // 可以将iconfont看做文本标签，但设置文本颜色默认不起作用，需为其单独设置
   .iconfont{
-    color: orange;
+    color: #ff5f16;
   }
 }
 .iconfont {
-  font-size: 25px;
+  font-size: 21px;
   color: gray;
 }
 
@@ -54,13 +54,13 @@ nav {
   width: 100vw;
   background-color: white;
   display: flex;
-  height: 50px;
+  height: 49px;
   li {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5px;
+    padding-top: 1px;
     text-align: center;
   }
 }

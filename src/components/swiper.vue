@@ -14,19 +14,19 @@ import Swiper from "swiper";
 import "swiper/css/swiper.css";
 
 export default {
-  mounted() {
+  updated() {
     new Swiper(".film-swiper-container", {
       direction: "horizontal",
       loop: true,
       autoplay: {
-        delay: 500
+        delay: 500,
       },
 
       pagination: {
-        el: ".swiper-pagination"
-      }
+        el: ".swiper-pagination",
+      },
     });
-  }
+  },
 };
 </script>
 

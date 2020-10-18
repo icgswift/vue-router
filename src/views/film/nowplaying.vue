@@ -10,13 +10,14 @@
 <template>
   <div id="npwrap" ref="npwrap">
     <li v-for="(data,index) in list" :key="index" class="filmPlayingOne">
-      <img :src="data.poster" @click="handleClick(data.filmId)" />
+      <img :src="data.poster" />
       <section>
         <p>
           {{data.name}}
           <span
             style="background-color:#d2d6dc; border-radius: 5%;"
-          >{{data.filmType.name}}</span>
+          >{{data.filmType.name}}
+          </span>
         </p>
         <span style="display:block;height:1rem;"></span>
         <p :style="data.grade?'display:block':'display:none;'">
@@ -29,7 +30,7 @@
           <span v-for="(item,index) in data.actors" :key="index">{{item.name}}&nbsp;</span>
         </p>
       </section>
-      <button>购票</button>
+      <button @click="handleClick(data.filmId)">查看</button>
     </li>
   </div>
 </template>
@@ -37,8 +38,8 @@
 <script>
 import axios from "axios";
 
-import { Indicator } from "mint-ui";
-import { Toast } from "mint-ui";
+import { Indicator,Toast } from "mint-ui";
+import { mapState } from 'vuex';
 
 export default {
   data() {
@@ -46,6 +47,9 @@ export default {
       list: [],
       pageNum: 2,
     };
+  },
+  computed:{
+   ...mapState(['cityId'])
   },
   methods: {
     handleClick(id) {
@@ -55,17 +59,17 @@ export default {
       });
 
       this.$router.push({
-        name: "details",
+        name: "details",//命名路由
         params: { id },
       });
     },
+
     expand() {
       axios({
-        url: `https://m.maizuo.com/gateway?cityId=420100&pageNum=${this.pageNum}&pageSize=10&type=1&k=5491072`,
+        url: `https://m.maizuo.com/gateway?cityId=${this.cityId}&pageNum=${this.pageNum}&pageSize=10&type=1&k=5491072`,
         method: "get",
         headers: {
-          "X-Client-Info":
-            '{"a":"3000","ch":"1002","v":"5.0.4","e":"15889854793526168150996","bc":"110100"}',
+          "X-Client-Info": '{"a":"3000","ch":"1002","v":"5.0.4","e":"15889854793526168150996","bc":"110100"}',
           "X-Host": "mall.film-ticket.film.list",
         },
       }).then((res) => {
@@ -76,16 +80,16 @@ export default {
       });
     },
   },
+
   mounted() {
     Indicator.open({
       text: "请稍等",
     });
     axios({
-      url: `https://m.maizuo.com/gateway?cityId=420100&pageNum=1&pageSize=10&type=1&k=5491072`,
+      url: `https://m.maizuo.com/gateway?cityId=${this.cityId}&pageNum=1&pageSize=10&type=1&k=5491072`,
       method: "get",
       headers: {
-        "X-Client-Info":
-          '{"a":"3000","ch":"1002","v":"5.0.4","e":"15889854793526168150996","bc":"110100"}',
+        "X-Client-Info": '{"a":"3000","ch":"1002","v":"5.0.4","e":"15889854793526168150996","bc":"110100"}',
         "X-Host": "mall.film-ticket.film.list",
       },
     }).then((res) => {
@@ -99,11 +103,12 @@ export default {
     });
     observer.observe(this.$refs.npwrap.lastElementChild); */
   },
+
   // mounted钩子函数操作修改data触发(when data changes)
   updated() {
-    console.log(this.list);
-  },
-};
+    console.log(this.list)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -117,9 +122,10 @@ export default {
     width: 20vw;
   }
   button {
-    color: red;
+    color: #ff5f16;
     background-color: white;
-    border: 1px orange solid;
+    border-radius: 4px;
+    border: 1px #ff5f16 solid;
     line-height: 1.5rem;
     width: 4.5rem;
   }

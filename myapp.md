@@ -5,11 +5,12 @@ vue项目  卖座电影
                      使用 
                            路由容器        <router-view></router-view>
                            路由跳转        
-                                          声明式导航  <router-link  to  tag   activeClass></router-link>
-                                          编程式导航   this.$router.push()  
-                                                                          携带参数      动态路由   （注册路由时应用占位符）  `/details/${id}`
+                                         1. 声明式导航  <router-link  to  tag   activeClass></router-link>
+                                         2. 编程式导航   this.$router(路由器).push()  
+                                                                          携带参数      动态路由   (注册路由时应用占位符)  `/details/${id}`
                                                                                        命名路由
-                                                                          参数获取     （在到的组件中） this.$route.params.id
+                                                                          参数获取     (在到的组件中) this.$route(当前路由).params.id
+                                                                          
                                                      this.$route, this.$router区别    $router,全称VueRouter（路由器：包含所有路由的容器） 
                                                                                       $route(路由：描述当前路径的对象) 
 
